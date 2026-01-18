@@ -51,29 +51,29 @@ export default function Users() {
 
   return (
     <>
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 py-5 px-6 bg-white dark:bg-gray-800 transition-colors duration-300">
-        <h2 className="text-3xl text-gray-800 dark:text-gray-100 font-semibold text-center sm:text-left">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 py-5 px-6 bg-white dark:bg-(--bg-card) transition-colors duration-300">
+        <h2 className="text-3xl text-gray-800 dark:text-(--text-primary) font-semibold text-center sm:text-left">
           Users
         </h2>
       </div>
 
       <div className="flex-1 p-4">
-        <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-md overflow-hidden flex flex-col transition-colors duration-300">
+        <div className="rounded-xl border border-gray-200 dark:border-(--border-dim) bg-white dark:bg-(--bg-card) shadow-md dark:shadow-2xl overflow-hidden flex flex-col transition-colors duration-300">
           {/* Search & Filter Bar */}
-          <div className="p-4 sm:p-5 flex flex-col sm:flex-row gap-3 items-start sm:items-center border-b border-gray-50 dark:border-gray-700 bg-white dark:bg-gray-800 transition-colors duration-300">
+          <div className="p-4 sm:p-5 flex flex-col sm:flex-row gap-3 items-start sm:items-center border-b border-gray-50 dark:border-(--border-dim) bg-white dark:bg-(--bg-card) transition-colors duration-300">
             <div className="relative max-w-xs flex-1">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <BsSearch className="w-4 h-4 text-gray-400 dark:text-gray-500" />
+                <BsSearch className="w-4 h-4 text-gray-400 dark:text-(--text-secondary)" />
               </div>
               <input
                 type="text"
-                className="bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 text-sm rounded-full focus:ring-[#315951] focus:border-[#315951] block w-full pl-10 p-2.5 outline-none font-sans dark:placeholder-gray-400 transition-colors duration-300"
+                className="bg-white dark:bg-(--bg-surface) border border-gray-300 dark:border-(--border-dim) text-gray-900 dark:text-(--text-primary) text-sm rounded-full focus:ring-[#315951] focus:border-[#315951] block w-full pl-10 p-2.5 outline-none font-sans dark:placeholder-(--text-secondary) transition-colors duration-300"
                 placeholder="Search by User Name..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
-            <button className="flex items-center gap-2 px-6 py-2 border border-gray-300 dark:border-gray-600 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors shadow-sm bg-white dark:bg-gray-800">
+            <button className="flex items-center gap-2 px-6 py-2 border border-gray-300 dark:border-(--border-dim) rounded-full text-gray-600 dark:text-(--text-secondary) hover:bg-gray-50 dark:hover:bg-(--bg-surface) transition-colors shadow-sm bg-white dark:bg-(--bg-card)">
               <BsFilter size={18} />
               <span className="font-medium text-sm">Filter</span>
             </button>
@@ -81,13 +81,13 @@ export default function Users() {
 
           <div className="overflow-x-auto relative">
             {loading && data.length > 0 && (
-              <div className="absolute inset-0 bg-white/50 dark:bg-gray-800/50 z-10 flex items-center justify-center transition-colors duration-300">
+              <div className="absolute inset-0 bg-white/50 dark:bg-(--bg-main)/50 z-10 flex items-center justify-center transition-colors duration-300">
                 <Spinner size="lg" />
               </div>
             )}
 
-            <table className="w-full overflow-x-scroll  min-w-max text-left text-sm text-gray-500 dark:text-gray-400">
-              <thead className="bg-[#315951] dark:bg-gray-700 text-white uppercase tracking-wider text-xs font-medium">
+            <table className="w-full overflow-x-scroll  min-w-max text-left text-sm text-gray-500 dark:text-(--text-secondary)">
+              <thead className="bg-[#315951] dark:bg-(--bg-surface) text-white dark:text-(--text-primary) uppercase tracking-wider text-xs font-medium">
                 <tr>
                   <th className="px-6 py-4 font-medium flex items-center gap-2 cursor-pointer group whitespace-nowrap">
                     User Name{" "}
@@ -121,7 +121,7 @@ export default function Users() {
                 </tr>
               </thead>
 
-              <tbody className="divide-y divide-gray-100 dark:divide-gray-700 bg-white dark:bg-gray-800 transition-colors duration-300">
+              <tbody className="divide-y divide-gray-100 dark:divide-(--border-dim) bg-white dark:bg-(--bg-card) transition-colors duration-300">
                 {loading && data.length === 0 ? (
                   <tr>
                     <td colSpan="6" className="text-center py-20">
@@ -131,10 +131,10 @@ export default function Users() {
                 ) : data.length > 0 ? (
                   data.map((user) => (
                     <tr
-                      className="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                      className="hover:bg-gray-50 dark:hover:bg-(--bg-surface)/50 transition-colors"
                       key={user.id}
                     >
-                      <td className="px-6 py-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                      <td className="px-6 py-4 font-medium text-gray-900 dark:text-(--text-primary) whitespace-nowrap">
                         {user.userName}
                       </td>
 
@@ -142,21 +142,21 @@ export default function Users() {
                         <span
                           className={`inline-block rounded-full px-4 py-1.5 text-xs font-semibold transition-colors duration-300 ${
                             user.isActivated
-                              ? "bg-[#009247] dark:bg-green-700 text-white"
-                              : "bg-[#BC5454] dark:bg-red-700 text-white"
+                              ? "bg-[#009247] dark:bg-emerald-900/30 text-white dark:text-emerald-400"
+                              : "bg-[#BC5454] dark:bg-red-900/20 text-white dark:text-red-400"
                           }`}
                         >
                           {user.isActivated ? "Active" : "Not Active"}
                         </span>
                       </td>
 
-                      <td className="px-6 py-4 text-gray-600 dark:text-gray-400 whitespace-nowrap hidden sm:table-cell">
+                      <td className="px-6 py-4 text-gray-600 dark:text-(--text-secondary) whitespace-nowrap hidden sm:table-cell">
                         {user.phoneNumber}
                       </td>
-                      <td className="px-6 py-4 text-gray-600 dark:text-gray-400 whitespace-nowrap hidden sm:table-cell">
+                      <td className="px-6 py-4 text-gray-600 dark:text-(--text-secondary) whitespace-nowrap hidden sm:table-cell">
                         {user.email}
                       </td>
-                      <td className="px-6 py-4 text-gray-600 dark:text-gray-400 whitespace-nowrap hidden sm:table-cell">
+                      <td className="px-6 py-4 text-gray-600 dark:text-(--text-secondary) whitespace-nowrap hidden sm:table-cell">
                         {new Date(user.creationDate).toLocaleDateString()}
                       </td>
 
@@ -169,21 +169,21 @@ export default function Users() {
                                 openDropdown === user.id ? null : user.id,
                               );
                             }}
-                            className="text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-full transition-all"
+                            className="text-gray-500 dark:text-(--text-secondary) hover:text-gray-800 dark:hover:text-(--text-primary) hover:bg-gray-100 dark:hover:bg-(--bg-surface) p-2 rounded-full transition-all"
                           >
                             <CiMenuKebab className="text-xl rotate-90" />
                           </button>
                         </div>
 
                         {openDropdown === user.id && (
-                          <div className="absolute right-10 top-8 z-50 w-40 rounded-2xl bg-white dark:bg-gray-700 p-2 shadow-2xl ring-1 ring-gray-100 dark:ring-gray-600 border border-gray-100 dark:border-gray-600 animate-in fade-in zoom-in duration-200 transition-colors">
+                          <div className="absolute right-10 top-8 z-50 w-40 rounded-2xl bg-white dark:bg-(--bg-card) p-2 shadow-2xl ring-1 ring-gray-100 dark:ring-(--border-dim) border border-gray-100 dark:border-(--border-dim) transition-colors duration-200">
                             <ul className="flex flex-col text-sm space-y-1">
                               <li
                                 onClick={() => handleToggleActive(user)}
                                 className={`flex w-full items-center gap-2 rounded-xl px-3 py-2 cursor-pointer transition-colors ${
                                   user.isActivated
-                                    ? "text-[#E14120] dark:text-red-400 hover:bg-red-50 dark:hover:bg-gray-600"
-                                    : "text-emerald-800 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-600"
+                                    ? "text-[#E14120] dark:text-red-400 hover:bg-red-50 dark:hover:bg-(--bg-surface)"
+                                    : "text-emerald-800 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-(--bg-surface)"
                                 }`}
                               >
                                 {user.isActivated ? (
@@ -198,10 +198,10 @@ export default function Users() {
                                   />
                                 )}
                                 <span className="font-medium">
-                                  {user.isActivated ? "Deactivate" : "Activate"}
+                                  {user.isActivated ? "Block" : "Activate"}
                                 </span>
                               </li>
-                              <li className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-emerald-800 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-600 cursor-pointer transition-colors">
+                              <li className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-emerald-800 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-(--bg-surface) cursor-pointer transition-colors">
                                 <FaEye
                                   className="text-emerald-700 dark:text-emerald-400"
                                   size={14}

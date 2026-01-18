@@ -67,15 +67,15 @@ export default function Projects() {
   };
 
   return (
-    <div className="flex flex-col h-full bg-[#f8f9fb] dark:bg-gray-900 transition-colors duration-300">
-      <div className="flex flex-row justify-between items-center gap-4 py-5 px-6 bg-white dark:bg-gray-800 transition-colors duration-300">
-        <h2 className="text-2xl sm:text-3xl text-gray-800 dark:text-gray-100 font-semibold truncate">
+    <div className="flex flex-col h-full bg-[#f8f9fb] dark:bg-(--bg-main) transition-colors duration-300">
+      <div className="flex flex-row justify-between items-center gap-4 py-5 px-6 bg-white dark:bg-(--bg-card) transition-colors duration-300">
+        <h2 className="text-2xl sm:text-3xl text-gray-800 dark:text-(--text-primary) font-semibold truncate">
           Projects
         </h2>
         {user?.userGroup === "Manager" && (
           <button
             onClick={() => navigate("/dashboard/Project-Data")}
-            className="bg-[#EF9B28] text-white py-2 px-4 sm:px-6 rounded-full flex items-center gap-2 hover:bg-[#e88c1f] dark:hover:bg-[#d88a1a] transition-all shadow-md font-medium text-sm sm:text-base shrink-0"
+            className="bg-[#EF9B28] text-white py-2 px-4 sm:px-6 rounded-full flex items-center gap-2 hover:bg-[#e88c1f] dark:hover:bg-(--accent-gold) transition-all shadow-md font-medium text-sm sm:text-base shrink-0"
           >
             <FaPlus size={14} /> <span>Add New Project</span>
           </button>
@@ -84,22 +84,22 @@ export default function Projects() {
 
       {/* Table */}
       <div className="p-4">
-        <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-md overflow-hidden flex flex-col transition-colors duration-300">
+        <div className="rounded-xl border border-gray-200 dark:border-(--border-dim) bg-white dark:bg-(--bg-card) shadow-md dark:shadow-2xl overflow-hidden flex flex-col transition-colors duration-300">
           {/* Internal Search Bar */}
-          <div className="p-4 sm:p-5 flex flex-col sm:flex-row gap-3 items-start sm:items-center border-b border-gray-50 dark:border-gray-700 bg-white dark:bg-gray-800 transition-colors duration-300">
+          <div className="p-4 sm:p-5 flex flex-col sm:flex-row gap-3 items-start sm:items-center border-b border-gray-50 dark:border-(--border-dim) bg-white dark:bg-(--bg-card) transition-colors duration-300">
             <div className="relative max-w-xs flex-1">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <BsSearch className="w-4 h-4 text-gray-400 dark:text-gray-500" />
+                <BsSearch className="w-4 h-4 text-gray-400 dark:text-(--text-secondary)" />
               </div>
               <input
                 type="text"
-                className="bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 text-sm rounded-full focus:ring-[#315951] focus:border-[#315951] block w-full pl-10 p-2.5 outline-none font-sans dark:placeholder-gray-400 transition-colors duration-300"
+                className="bg-white dark:bg-(--bg-surface) border border-gray-300 dark:border-(--border-dim) text-gray-900 dark:text-(--text-primary) text-sm rounded-full focus:ring-[#315951] focus:border-[#315951] block w-full pl-10 p-2.5 outline-none font-sans dark:placeholder-(--text-secondary) transition-colors duration-300"
                 placeholder="Search by Title..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
-            <button className="flex items-center gap-2 px-6 py-2 border border-gray-300 dark:border-gray-600 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors shadow-sm bg-white dark:bg-gray-800">
+            <button className="flex items-center gap-2 px-6 py-2 border border-gray-300 dark:border-(--border-dim) rounded-full text-gray-600 dark:text-(--text-secondary) hover:bg-gray-50 dark:hover:bg-(--bg-surface) transition-colors shadow-sm bg-white dark:bg-(--bg-card)">
               <BsFilter size={18} />
               <span className="font-medium text-sm">Filter</span>
             </button>
@@ -122,8 +122,8 @@ export default function Projects() {
                 {error}
               </p>
             ) : (
-              <table className="w-full min-w-max text-left text-sm text-gray-500 dark:text-gray-400">
-                <thead className="bg-[#315951] dark:bg-gray-700 text-white uppercase tracking-wider text-xs font-medium">
+              <table className="w-full min-w-max text-left text-sm text-gray-500 dark:text-(--text-secondary)">
+                <thead className="bg-[#315951] dark:bg-(--bg-surface) text-white dark:text-(--text-primary) uppercase tracking-wider text-xs font-medium">
                   <tr>
                     <th className="px-6 py-4 font-medium">Title</th>
                     <th className="px-6 py-4 font-medium hidden sm:table-cell">
@@ -146,30 +146,30 @@ export default function Projects() {
                   </tr>
                 </thead>
 
-                <tbody className="divide-y divide-gray-100 dark:divide-gray-700 bg-white dark:bg-gray-800 transition-colors duration-300">
+                <tbody className="divide-y divide-gray-100 dark:divide-(--border-dim) bg-white dark:bg-(--bg-card) transition-colors duration-300">
                   {projects.length > 0 ? (
                     projects.map((project) => (
                       <tr
                         key={project.id}
-                        className="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                        className="hover:bg-gray-50 dark:hover:bg-(--bg-surface)/50 transition-colors"
                       >
-                        <td className="px-6 py-4 font-medium text-gray-900 dark:text-gray-100 whitespace-nowrap">
+                        <td className="px-6 py-4 font-medium text-gray-900 dark:text-(--text-primary) whitespace-nowrap">
                           {project.title}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap hidden sm:table-cell">
-                          <span className="bg-[#D1FADF] dark:bg-green-900 text-[#027A48] dark:text-green-200 px-4 py-1.5 rounded-full text-xs font-semibold transition-colors duration-300">
+                          <span className="bg-[#D1FADF] dark:bg-emerald-900/30 text-[#027A48] dark:text-emerald-400 px-4 py-1.5 rounded-full text-xs font-semibold transition-colors duration-300">
                             {project.task?.length
                               ? `${project.task.filter((t) => t.status === "Done").length} Done`
                               : "No Tasks"}
                           </span>
                         </td>
-                        <td className="px-6 py-4 text-gray-600 dark:text-gray-400 hidden md:table-cell">
+                        <td className="px-6 py-4 text-gray-600 dark:text-(--text-secondary) hidden md:table-cell">
                           {project.task?.length || 0}
                         </td>
-                        <td className="px-6 py-4 text-gray-500 dark:text-gray-400 max-w-xs truncate hidden lg:table-cell">
+                        <td className="px-6 py-4 text-gray-500 dark:text-(--text-secondary) max-w-xs truncate hidden lg:table-cell">
                           {project.description || "-"}
                         </td>
-                        <td className="px-6 py-4 text-gray-500 dark:text-gray-400 whitespace-nowrap hidden sm:table-cell">
+                        <td className="px-6 py-4 text-gray-500 dark:text-(--text-secondary) whitespace-nowrap hidden sm:table-cell">
                           {new Date(project.creationDate).toLocaleDateString()}
                         </td>
                         {user?.userGroup === "Manager" && (
@@ -193,10 +193,10 @@ export default function Projects() {
                             {openDropdown === project.id && (
                               <div
                                 ref={dropdownRef}
-                                className="absolute right-10 top-8 w-40 bg-white dark:bg-gray-700 border border-gray-100 dark:border-gray-600 rounded-2xl shadow-2xl z-50 p-2 animate-in fade-in zoom-in duration-200 transition-colors"
+                                className="absolute right-10 top-8 w-40 bg-white dark:bg-(--bg-card) border border-gray-100 dark:border-(--border-strong) rounded-2xl shadow-2xl z-50 p-2 transition-colors duration-200"
                               >
                                 <ul className="flex flex-col text-sm space-y-1">
-                                  <li className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-emerald-800 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-600 cursor-pointer transition-colors">
+                                  <li className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-emerald-800 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-(--bg-surface) cursor-pointer transition-colors">
                                     <HiOutlineEye
                                       size={16}
                                       className="text-emerald-700 dark:text-emerald-400"
@@ -210,7 +210,7 @@ export default function Projects() {
                                         { state: project },
                                       )
                                     }
-                                    className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-emerald-800 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-gray-600 cursor-pointer transition-colors"
+                                    className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-emerald-800 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-(--bg-surface) cursor-pointer transition-colors"
                                   >
                                     <HiOutlinePencilAlt
                                       size={16}
@@ -220,7 +220,7 @@ export default function Projects() {
                                   </li>
                                   <li
                                     onClick={() => handleDeleteClick(project)}
-                                    className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-gray-600 cursor-pointer transition-colors"
+                                    className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-(--bg-surface) cursor-pointer transition-colors"
                                   >
                                     <HiOutlineTrash size={16} />{" "}
                                     <span className="font-medium">Delete</span>
