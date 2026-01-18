@@ -59,7 +59,7 @@ export default function ChartsData({ TasksData }) {
       },
       legend: {
         labels: {
-          color: darkMode ? "#fff" : "#000",
+          color: darkMode ? "#fff" : "#1f2937",
           font: {
             size: 12,
           },
@@ -78,7 +78,7 @@ export default function ChartsData({ TasksData }) {
   return (
     <>
       <div
-        className={`w-full h-full flex items-center justify-center transition-colors duration-300 rounded-md`}
+        className={` w-full h-full flex items-center justify-center transition-colors duration-300 rounded-md`}
       >
         <div className="h-full w-full">
           <Doughnut data={data} options={options} />
