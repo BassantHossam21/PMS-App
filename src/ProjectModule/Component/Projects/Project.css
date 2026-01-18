@@ -1,0 +1,21 @@
+/* Custom Header Styling */
+.custom-project-table thead th {
+    background-color: #4D6D66 !important; /* The dark teal in your image */
+    color: white;
+    text-transform: capitalize;
+    font-weight: 400;
+}
+
+/* Rounded Search Input */
+.custom-search-input input {
+    border-radius: 20px !important;
+    background-color: #fcfcfc;
+    border-color: #e5e7eb;
+}
+
+/* Row Styling */
+.custom-project-table td {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    color: #4B5563;
+}

@@ -1,0 +1,110 @@
+@import "tailwindcss";
+@import "flowbite-react/plugin/tailwindcss";
+@source "../.flowbite-react/class-list.json";
+@variant dark (&:where(.dark, .dark *));
+
+@layer utilities {
+  .Auth-container {
+    background-position: center center;
+    background-size: cover;
+  }
+
+  /* Dark Mode */
+  .dark body {
+    background-color: #0f172a;
+    color: #f9fafb;
+  }
+  input::-ms-reveal,
+  input::-ms-clear {
+    display: none;
+  }
+  .form-layout {
+    background-color: rgba(49, 74, 89, 0.9);
+  }
+  .input-img {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-image: url("../src/assets/imgUpload.jpg");
+    background-size: cover;
+    position: relative;
+    cursor: pointer;
+  }
+  .input-img::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+    z-index: 1;
+  }
+  #fileInput {
+    display: none;
+  }
+
+  input {
+    background-color: transparent !important;
+    border: none;
+  }
+}
+
+.ps-sidebar-container {
+  background: #0e382f;
+  color: white;
+  min-height: 100vh;
+}
+
+/* Custom Responsive Pagination */
+.pagination {
+  display: flex !important;
+  list-style: none !important;
+  gap: 8px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.page-item {
+  margin: 0 !important;
+}
+
+.page-link {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 8px !important; /* Semi-rounded like Figma */
+  border: 1px solid #e5e7eb !important;
+  color: #6b7280 !important;
+  font-size: 14px !important;
+  transition: all 0.2s !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  background: white !important;
+}
+
+.page-item.active .page-link {
+  background-color: #ef9b28 !important; /* Gold/Amber like buttons */
+  border-color: #ef9b28 !important;
+  color: white !important;
+}
+
+.page-item.disabled .page-link {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+}
+
+.page-link:hover:not(.active) {
+  background-color: #f9fafb !important;
+  border-color: #d1d5db !important;
+}
+.Auth-container {
+  min-height: 100dvh;
+}
