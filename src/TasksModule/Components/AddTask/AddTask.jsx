@@ -63,21 +63,21 @@ export default function AddTask() {
 
   return (
     <>
-      <div className="flex flex-col justify-start py-6 px-6 bg-white dark:bg-gray-800 transition-colors duration-300 border-b border-gray-100 dark:border-gray-700">
+      <div className="flex flex-col justify-start py-6 px-6 bg-white dark:bg-(--bg-card) transition-colors duration-300 border-b border-gray-100 dark:border-(--border-dim)">
         <Link
           to={"/dashboard/tasks"}
-          className="flex w-fit items-center text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors gap-1 text-sm mb-2"
+          className="flex w-fit items-center text-gray-500 dark:text-(--text-secondary) hover:text-gray-700 dark:hover:text-(--text-primary) transition-colors gap-1 text-sm mb-2"
         >
           <IoIosArrowBack />
           <span>View All Tasks</span>
         </Link>
-        <h2 className="text-2xl font-semibold text-[#0E382F] dark:text-gray-200">
+        <h2 className="text-2xl font-semibold text-[#0E382F] dark:text-(--text-primary)">
           {isEdit ? "Edit Task" : "Add a New Task"}
         </h2>
       </div>
 
-      <div className="bg-[#F8F9FB] dark:bg-gray-900 min-h-screen w-full px-4 sm:px-6 py-6 sm:py-10 transition-colors duration-300">
-        <div className="bg-white dark:bg-gray-800 max-w-6xl mx-auto rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 transition-colors duration-300 overflow-hidden">
+      <div className="bg-[#F8F9FB] dark:bg-(--bg-main) min-h-screen w-full px-4 sm:px-6 py-6 sm:py-10 transition-colors duration-300">
+        <div className="bg-white dark:bg-(--bg-card) max-w-6xl mx-auto rounded-2xl shadow-xl border border-gray-100 dark:border-(--border-dim) transition-colors duration-300 overflow-hidden">
           <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
             {/* Input Fields Container */}
             <div className="p-8 sm:p-14 flex flex-col gap-8">
@@ -85,7 +85,7 @@ export default function AddTask() {
               <div>
                 <Label
                   htmlFor="title"
-                  className="text-[#0E382F] dark:text-gray-300 font-medium mb-3 block text-base"
+                  className="text-[#0E382F] dark:text-(--text-secondary) font-medium mb-3 block text-base"
                 >
                   Title
                 </Label>
@@ -103,7 +103,7 @@ export default function AddTask() {
                       input: {
                         base: "block w-full border disabled:cursor-not-allowed disabled:opacity-50 transition-all rounded-xl py-3 px-4",
                         colors: {
-                          gray: "bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white focus:border-emerald-500 focus:ring-emerald-500",
+                          gray: "bg-white dark:bg-(--bg-surface) border-gray-200 dark:border-(--border-dim) text-gray-900 dark:text-(--text-primary) focus:border-emerald-500 focus:ring-emerald-500",
                         },
                       },
                     },
@@ -120,7 +120,7 @@ export default function AddTask() {
               <div>
                 <Label
                   htmlFor="description"
-                  className="text-[#0E382F] dark:text-gray-300 font-medium mb-3 block text-base"
+                  className="text-[#0E382F] dark:text-(--text-secondary) font-medium mb-3 block text-base"
                 >
                   Description
                 </Label>
@@ -132,7 +132,7 @@ export default function AddTask() {
                     required: "Description is required",
                     minLength: { value: 8, message: "Min length is 8" },
                   })}
-                  className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white focus:border-emerald-500 focus:ring-emerald-500 rounded-2xl shadow-sm transition-all resize-none py-3 px-4"
+                  className="bg-white dark:bg-(--bg-surface) border-gray-200 dark:border-(--border-dim) text-gray-900 dark:text-(--text-primary) focus:border-emerald-500 focus:ring-emerald-500 rounded-2xl shadow-sm transition-all resize-none py-3 px-4"
                 />
                 {errors.description && (
                   <p className="text-red-600 dark:text-red-400 text-xs mt-1.5 ml-1">
@@ -147,7 +147,7 @@ export default function AddTask() {
                 <div className="w-full sm:w-1/2">
                   <Label
                     htmlFor="employeeId"
-                    className="text-[#0E382F] dark:text-gray-300 font-medium mb-2 block"
+                    className="text-[#0E382F] dark:text-(--text-secondary) font-medium mb-2 block"
                   >
                     User
                   </Label>
@@ -157,7 +157,16 @@ export default function AddTask() {
                     {...register("employeeId", {
                       required: "User is required",
                     })}
-                    className="bg-white dark:bg-gray-700 border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white focus:border-emerald-500 focus:ring-emerald-500 rounded-xl shadow-sm"
+                    theme={{
+                      field: {
+                        select: {
+                          base: "block w-full border disabled:cursor-not-allowed disabled:opacity-50 transition-all rounded-xl py-3 px-4",
+                          colors: {
+                            gray: "bg-white dark:bg-(--bg-surface) border-gray-200 dark:border-(--border-dim) text-gray-900 dark:text-(--text-primary) focus:border-emerald-500 focus:ring-emerald-500",
+                          },
+                        },
+                      },
+                    }}
                   >
                     <option value="" disabled>
                       Select User
@@ -180,7 +189,7 @@ export default function AddTask() {
                   <div className="w-full sm:w-1/2">
                     <Label
                       htmlFor="projectId"
-                      className="text-[#0E382F] dark:text-gray-300 font-medium mb-2 block"
+                      className="text-[#0E382F] dark:text-(--text-secondary) font-medium mb-2 block"
                     >
                       Project
                     </Label>
@@ -190,7 +199,16 @@ export default function AddTask() {
                       {...register("projectId", {
                         required: "Project is required",
                       })}
-                      className="bg-white dark:bg-gray-700 border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white focus:border-emerald-500 focus:ring-emerald-500 rounded-xl shadow-sm"
+                      theme={{
+                        field: {
+                          select: {
+                            base: "block w-full border disabled:cursor-not-allowed disabled:opacity-50 transition-all rounded-xl py-3 px-4",
+                            colors: {
+                              gray: "bg-white dark:bg-(--bg-surface) border-gray-200 dark:border-(--border-dim) text-gray-900 dark:text-(--text-primary) focus:border-emerald-500 focus:ring-emerald-500",
+                            },
+                          },
+                        },
+                      }}
                     >
                       <option value="" disabled>
                         Select Project
@@ -212,10 +230,10 @@ export default function AddTask() {
             </div>
 
             {/* Actions Bar */}
-            <div className="px-8 sm:px-12 py-8 bg-gray-50/50 dark:bg-gray-800/50 border-t border-gray-100 dark:border-gray-700 flex justify-between items-center">
+            <div className="px-8 sm:px-12 py-8 bg-gray-50/50 dark:bg-(--bg-surface)/30 border-t border-gray-100 dark:border-(--border-dim) flex justify-between items-center">
               <Link
                 to={"/dashboard/tasks"}
-                className="px-8 py-2.5 border-2 border-gray-400 dark:border-gray-500 text-gray-600 dark:text-gray-300 rounded-full font-medium hover:bg-gray-100 dark:hover:bg-gray-700 transition-all active:scale-95 text-center"
+                className="px-8 py-2.5 border-2 border-gray-400 dark:border-gray-500 text-gray-600 dark:text-(--text-secondary) rounded-full font-medium hover:bg-gray-100 dark:hover:bg-(--bg-surface) transition-all active:scale-95 text-center"
               >
                 Cancel
               </Link>

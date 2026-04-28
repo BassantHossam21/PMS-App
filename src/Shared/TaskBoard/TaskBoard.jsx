@@ -9,10 +9,12 @@ import { CSS } from "@dnd-kit/utilities";
 import { useTasksApi } from "../../Hooks/useTasks";
 
 const columns = [
-  { id: "ToDo", title: "Todo" },
-  { id: "InProgress", title: "In Progress" },
+  { id: "ToDo", title: "To Do" },
+  { id: "InProgress", title: "In progress" },
   { id: "Done", title: "Done" },
 ];
+
+import { FaEdit } from "react-icons/fa";
 
 function TaskCard({ task }) {
   const { attributes, listeners, setNodeRef, transform, transition } =
@@ -21,17 +23,28 @@ function TaskCard({ task }) {
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
-    padding: "10px",
-    margin: "15px",
-    background: "#EF9B28",
-    borderRadius: "6px",
-    cursor: "grab",
-    border: "1px solid #ddd",
   };
 
   return (
-    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      {task.title}
+    <div
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+      className="p-3.5 mb-3 bg-[#EF9B28] text-white rounded-xl cursor-grab active:cursor-grabbing shadow-md hover:shadow-lg transition-all duration-200 font-bold flex flex-col justify-center min-h-[70px] active:scale-[0.98] group relative overflow-hidden"
+    >
+      <div className="absolute top-0 left-0 w-1 h-full bg-white/20"></div>
+      <div className="flex justify-between items-center gap-3">
+        <span className="text-base leading-tight tracking-wide">
+          {task.title}
+        </span>
+        {task.status === "ToDo" && (
+          <FaEdit
+            className="text-white/80 hover:text-white transition-all shrink-0"
+            size={14}
+          />
+        )}
+      </div>
     </div>
   );
 }
@@ -40,26 +53,30 @@ function Column({ column, tasks }) {
   const { setNodeRef } = useDroppable({ id: column.id });
 
   return (
-    <div
-      ref={setNodeRef}
-      style={{
-        flex: 1,
-        minHeight: "400px",
-        background: "#315951E5",
-        padding: "15px",
-        borderRadius: "8px",
-      }}
-    >
-      <h3 className="text-white">{column.title}</h3>
+    <div className="flex-1 flex flex-col min-w-[300px] mb-10 md:mb-0">
+      {/* Column Header */}
+      <div className="px-4 mb-5 border-l-4 border-[#EF9B28]">
+        <h3 className="text-xl font-bold text-[#0E382F] dark:text-(--text-primary) tracking-wide">
+          {column.title}
+        </h3>
+      </div>
 
-      <SortableContext
-        items={tasks.map((t) => t.id)}
-        strategy={verticalListSortingStrategy}
+      {/* Column Container */}
+      <div
+        ref={setNodeRef}
+        className="flex-1 max-h-[600px] overflow-y-auto tasks-scrollbar bg-[#4f6f67] p-6 rounded-3xl shadow-lg transition-all duration-300"
       >
-        {tasks.map((task) => (
-          <TaskCard key={task.id} task={task} />
-        ))}
-      </SortableContext>
+        <SortableContext
+          items={tasks.map((t) => t.id)}
+          strategy={verticalListSortingStrategy}
+        >
+          <div className="flex flex-col gap-2">
+            {tasks.map((task) => (
+              <TaskCard key={task.id} task={task} />
+            ))}
+          </div>
+        </SortableContext>
+      </div>
     </div>
   );
 }
@@ -126,7 +143,7 @@ export default function TaskBoard() {
 
   return (
     <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
-      <div style={{ display: "flex", gap: "20px", padding: "20px" }}>
+      <div className="flex flex-col md:flex-row gap-8 p-6 overflow-x-auto min-h-screen bg-[#F8F9FB] dark:bg-(--bg-main) transition-colors duration-300">
         {columns.map((col) => (
           <Column
             key={col.id}

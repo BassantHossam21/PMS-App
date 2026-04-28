@@ -32,7 +32,7 @@ export default function NavBar({ onMenuClick }) {
     <Navbar
       fluid
       rounded
-      className="bg-white dark:bg-gray-900 shadow-lg dark:shadow-xl px-4 py-2 transition-colors duration-300 z-50 relative"
+      className="bg-white dark:bg-(--bg-card) shadow-lg dark:shadow-2xl px-4 py-2 transition-all duration-300 z-50 relative dark:border-b dark:border-(--border-dim)"
     >
       {/* Logo */}
       <NavbarBrand>
@@ -99,17 +99,17 @@ export default function NavBar({ onMenuClick }) {
                 <span className="font-semibold text-[#0E382F] dark:text-[#EF9B28] text-sm">
                   {user?.userName}
                 </span>
-                <span className="text-[#6b7280] dark:text-gray-400 text-xs truncate">
+                <span className="text-[#6b7280] dark:text-(--text-secondary) text-xs truncate">
                   {user?.userEmail}
                 </span>
               </div>
             </div>
           }
-          className="bg-white dark:bg-gray-800 shadow-lg dark:shadow-gray-700 border border-gray-200 dark:border-gray-700 rounded-lg mt-2 transition-colors duration-300"
+          className="bg-white dark:bg-(--bg-card) shadow-xl dark:shadow-black/50 border border-gray-200 dark:border-(--border-dim) rounded-xl transition-all duration-300"
         >
           <DropdownItem
             onClick={() => navigate("/dashboard/change-password")}
-            className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 dark:hover:bg-gray-700"
+            className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 dark:hover:bg-(--bg-surface)"
           >
             <TbLockPassword size={18} />
             Change Password
@@ -117,7 +117,7 @@ export default function NavBar({ onMenuClick }) {
 
           <DropdownItem
             onClick={handelLogOut}
-            className="flex items-center gap-2 text-red-500 dark:text-red-400 dark:hover:bg-gray-700"
+            className="flex items-center gap-2 text-red-500 dark:text-red-400 dark:hover:bg-(--bg-surface)"
           >
             <CgLogOut size={18} />
             Logout

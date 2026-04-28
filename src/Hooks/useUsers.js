@@ -13,7 +13,7 @@ export const useUsersApi = () => {
     try {
       setLoading(true);
       const response = await axiosClient.get(
-        `Users/?pageSize=${pageSize}&pageNumber=${pageNumber}&userName=${userName}`
+        `Users/?pageSize=${pageSize}&pageNumber=${pageNumber}&userName=${userName}`,
       );
       console.log(response.data);
       setData(response?.data?.data || []);

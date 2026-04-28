@@ -15,9 +15,11 @@ import { CgLogOut } from "react-icons/cg";
 import { TbLockPassword } from "react-icons/tb";
 import ToggleTheme from "../ToggleTheme/ToggleTheme";
 import imgProfile from "../../assets/imgUpload.jpg";
+import { ThemeContext } from "../../Context/DarkModeContext";
 
 export default function SideBar({ toggled, setToggled }) {
   const { user, logout } = useContext(AuthContext);
+  const { darkMode } = useContext(ThemeContext);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -74,7 +76,7 @@ export default function SideBar({ toggled, setToggled }) {
       toggled={toggled}
       onBackdropClick={() => setToggled(false)}
       breakPoint="md"
-      backgroundColor="#0e382f"
+      backgroundColor={darkMode ? "#061a16" : "#0e382f"}
       rootStyles={{
         height: "100vh",
         minHeight: "100vh",
@@ -96,10 +98,14 @@ export default function SideBar({ toggled, setToggled }) {
         menuItemStyles={{
           button: ({ level, active }) => ({
             color: "#fff",
-            backgroundColor: active ? "#f3a333" : "transparent",
+            backgroundColor: active
+              ? darkMode
+                ? "#f59e0b"
+                : "#f3a333"
+              : "transparent",
             "&:hover": {
-              color: "#f3a333",
-              backgroundColor: "rgba(255,255,255,0.1)",
+              color: darkMode ? "#f59e0b" : "#f3a333",
+              backgroundColor: "rgba(255,255,255,0.05)",
             },
           }),
         }}

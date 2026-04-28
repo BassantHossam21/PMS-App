@@ -9,18 +9,49 @@
     background-size: cover;
   }
 
-  /* Dark Mode */
-  .dark body {
-    background-color: #0f172a;
-    color: #f9fafb;
+  /* Premium Dark Mode Variables */
+  /* Harmonious Deep Emerald Dark Mode */
+  .dark {
+    --bg-main: #050a09;
+    /* Deepest Emerald-Black */
+    --bg-card: #0b1412;
+    /* Deep Forest Card */
+    --bg-surface: #12211e;
+    /* Layered Surface */
+    --border-dim: #1a2e2a;
+    /* Subtle separation */
+    --border-strong: #25423c;
+    /* Defined borders */
+    --text-primary: #e6eded;
+    /* Soft Mint-White */
+    --text-secondary: #94a3a1;
+    /* Muted Green-Grey */
+    --accent-gold: #fbbf24;
+    /* Warm Amber */
+    --sidebar-bg: #061a16;
+    /* Deep Emerald Sidebar */
   }
+
+  body {
+    background-color: #f8f9fb;
+    /* Light mode default */
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .dark body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+  }
+
   input::-ms-reveal,
   input::-ms-clear {
     display: none;
   }
+
   .form-layout {
     background-color: rgba(49, 74, 89, 0.9);
   }
+
   .input-img {
     margin: auto;
     display: flex;
@@ -34,6 +65,7 @@
     position: relative;
     cursor: pointer;
   }
+
   .input-img::before {
     content: "";
     position: absolute;
@@ -45,6 +77,7 @@
     border-radius: 50%;
     z-index: 1;
   }
+
   #fileInput {
     display: none;
   }
@@ -52,6 +85,21 @@
   input {
     background-color: transparent !important;
     border: none;
+  }
+
+  /* Custom Scrollbar for Tasks */
+  .tasks-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .tasks-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .tasks-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+  }
+  .tasks-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
   }
 }
 
@@ -80,7 +128,8 @@
   justify-content: center !important;
   width: 32px !important;
   height: 32px !important;
-  border-radius: 8px !important; /* Semi-rounded like Figma */
+  border-radius: 8px !important;
+  /* Semi-rounded like Figma */
   border: 1px solid #e5e7eb !important;
   color: #6b7280 !important;
   font-size: 14px !important;
@@ -91,7 +140,8 @@
 }
 
 .page-item.active .page-link {
-  background-color: #ef9b28 !important; /* Gold/Amber like buttons */
+  background-color: #ef9b28 !important;
+  /* Gold/Amber like buttons */
   border-color: #ef9b28 !important;
   color: white !important;
 }
@@ -105,6 +155,7 @@
   background-color: #f9fafb !important;
   border-color: #d1d5db !important;
 }
+
 .Auth-container {
   min-height: 100dvh;
 }

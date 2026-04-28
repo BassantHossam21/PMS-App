@@ -13,7 +13,7 @@ export default function MasterLayout() {
         <SideBar toggled={toggled} setToggled={setToggled} />
 
         {/* Page Content */}
-        <div className="flex-1 overflow-x-hidden min-w-0 bg-[#F8F9FB] dark:bg-gray-900 transition-colors duration-300">
+        <div className="flex-1 overflow-x-hidden min-w-0 bg-[#F8F9FB] dark:bg-(--bg-main) transition-colors duration-300">
           <Outlet />
         </div>
       </div>
