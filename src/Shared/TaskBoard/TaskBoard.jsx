@@ -64,7 +64,7 @@ function Column({ column, tasks }) {
       {/* Column Container */}
       <div
         ref={setNodeRef}
-        className="flex-1 max-h-[400px] bg-[#4f6f67] p-6 rounded-[2.5rem] shadow-lg transition-all duration-300"
+        className="flex-1 max-h-[600px] overflow-y-auto tasks-scrollbar bg-[#4f6f67] p-6 rounded-3xl shadow-lg transition-all duration-300"
       >
         <SortableContext
           items={tasks.map((t) => t.id)}

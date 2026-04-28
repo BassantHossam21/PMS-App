@@ -86,6 +86,21 @@
     background-color: transparent !important;
     border: none;
   }
+
+  /* Custom Scrollbar for Tasks */
+  .tasks-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .tasks-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .tasks-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+  }
+  .tasks-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
 }
 
 .ps-sidebar-container {
